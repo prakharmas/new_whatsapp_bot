@@ -1,0 +1,22 @@
+const express = require('express');
+const router = express.Router();
+const AuthController = require('../controllers/AuthController');
+const { redirectIfAuthenticated, redirectIfAdminAuthenticated } = require('../middleware/auth');
+
+// Vendor authentication
+router.get('/login', redirectIfAuthenticated, AuthController.showLogin);
+router.post('/login', redirectIfAuthenticated, AuthController.login);
+router.get('/logout', AuthController.logout);
+router.post('/logout', AuthController.logout); // Add POST route for AJAX logout
+
+// JSON API auth routes for React frontend
+router.post('/api/auth/login', AuthController.apiLogin);
+router.post('/api/auth/logout', AuthController.apiLogout);
+
+// Admin authentication
+router.get('/admin/login', redirectIfAdminAuthenticated, AuthController.showAdminLogin);
+router.post('/admin/login', AuthController.adminLogin);
+router.get('/admin/logout', AuthController.adminLogout);
+router.post('/admin/logout', AuthController.adminLogout); // Add POST route for AJAX logout
+
+module.exports = router;
