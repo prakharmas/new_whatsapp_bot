@@ -53,7 +53,7 @@ setInterval(async () => {
 
 // CORS middleware for React frontend
 app.use((req, res, next) => {
-    const allowedOrigins = ['http://localhost:5173', 'http://localhost:5174', 'http://192.168.11.236:5173', 'http://192.168.11.236:3001'];
+    const allowedOrigins = ['http://localhost:5173', 'http://localhost:5174', 'http://192.168.11.236:5173', 'http://192.168.11.236:3001', 'http://125.22.69.162:5173', 'http://125.22.69.162:3001'];
     const origin = req.headers.origin;
     if (allowedOrigins.includes(origin)) {
         res.setHeader('Access-Control-Allow-Origin', origin);
